@@ -1,7 +1,7 @@
 [versions]
 guava = "33.4.6-jre"
 junit-jupiter = "5.12.1"
-kafka = "3.9.0"
+kafka = "3.9.1"
 spotless = "7.2.1"
 jackson = "2.20.0"
 
