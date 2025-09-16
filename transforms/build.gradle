@@ -1,7 +1,11 @@
 plugins {
+    id 'application'
     id 'java-library'
     alias(libs.plugins.spotless)
 }
+
+group = "com.reproio"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -25,4 +29,25 @@ java {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+distributions {
+    main {
+        contents {
+            exclude("**/connect-api*.jar")
+            exclude("**/connect-json*.jar")
+            exclude("**/connect-runtime*.jar")
+            exclude("**/connect-transforms*.jar")
+        }
+    }
+}
+
+distZip {
+    archiveBaseName = "kafka-connect-transforms"
+}
+
+distTar {
+    archiveBaseName = "kafka-connect-transforms"
+    compression = Compression.GZIP
+    archiveExtension = "tar.gz"
 }
