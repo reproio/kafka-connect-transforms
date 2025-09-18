@@ -11,7 +11,7 @@ import org.apache.kafka.connect.sink.SinkRecord;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("resource")
-class MapUnionToStringTest {
+class AvroMapToJsonStringTest {
 
   @Test
   void transformsValue_UnionMap() {
@@ -28,7 +28,7 @@ class MapUnionToStringTest {
 
     var in = new SinkRecord("topic-a", 0, null, null, valueSchema, value, 123L);
 
-    MapToJsonString.Value<SinkRecord> transformer = new MapToJsonString.Value<>();
+    AvroMapToJsonString.Value<SinkRecord> transformer = new AvroMapToJsonString.Value<>();
     transformer.configure(Map.of("field", "properties"));
 
     var out = transformer.apply(in);
@@ -69,7 +69,7 @@ class MapUnionToStringTest {
 
     var in = new SinkRecord("topic-a", 0, null, null, valueSchema, value, 123L);
 
-    MapToJsonString.Value<SinkRecord> transformer = new MapToJsonString.Value<>();
+    AvroMapToJsonString.Value<SinkRecord> transformer = new AvroMapToJsonString.Value<>();
     transformer.configure(Map.of("field", "properties"));
 
     var out = transformer.apply(in);

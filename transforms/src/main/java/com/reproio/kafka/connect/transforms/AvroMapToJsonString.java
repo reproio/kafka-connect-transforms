@@ -12,7 +12,7 @@ import org.apache.kafka.connect.data.SchemaBuilder;
 import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.transforms.Transformation;
 
-public abstract class MapToJsonString<R extends ConnectRecord<R>> implements Transformation<R> {
+public abstract class AvroMapToJsonString<R extends ConnectRecord<R>> implements Transformation<R> {
 
   public static final String FIELD_CONFIG = "field";
   public static final ObjectMapper mapper = new ObjectMapper();
@@ -28,7 +28,7 @@ public abstract class MapToJsonString<R extends ConnectRecord<R>> implements Tra
     fieldName = config.getString(FIELD_CONFIG);
   }
 
-  protected MapToJsonString() {}
+  protected AvroMapToJsonString() {}
 
   @Override
   public R apply(R record) {
@@ -117,7 +117,7 @@ public abstract class MapToJsonString<R extends ConnectRecord<R>> implements Tra
 
   protected abstract R newRecord(R record, Schema updatedSchema, Object updatedValue);
 
-  public static class Key<R extends ConnectRecord<R>> extends MapToJsonString<R> {
+  public static class Key<R extends ConnectRecord<R>> extends AvroMapToJsonString<R> {
     @Override
     protected Schema operatingSchema(R record) {
       return record.keySchema();
@@ -141,7 +141,7 @@ public abstract class MapToJsonString<R extends ConnectRecord<R>> implements Tra
     }
   }
 
-  public static class Value<R extends ConnectRecord<R>> extends MapToJsonString<R> {
+  public static class Value<R extends ConnectRecord<R>> extends AvroMapToJsonString<R> {
     @Override
     protected Schema operatingSchema(R record) {
       return record.valueSchema();
