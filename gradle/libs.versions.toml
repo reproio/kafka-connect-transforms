@@ -1,5 +1,5 @@
 [versions]
-guava = "33.4.6-jre"
+guava = "33.5.0-jre"
 junit-jupiter = "5.12.1"
 kafka = "3.9.0"
 spotless = "7.2.1"
